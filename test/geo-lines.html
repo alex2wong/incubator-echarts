@@ -223,24 +223,6 @@ under the License.
                     return res;
                 };
 
-                // cache a linear gradient line in memCanv
-                var symCanv = document.createElement('canvas');
-                var symCtx = symCanv.getContext('2d');
-                var symHeight = 20, symWidth = 4;
-                symCanv.height = symHeight;
-                symCanv.width = symWidth;
-                var linePattern = symCtx.createLinearGradient(0,0,0,symHeight);
-                linePattern.addColorStop(0, 'rgba(255,255,255,.4)');
-                linePattern.addColorStop(1, 'rgba(255,255,255,0)');
-                symCtx.strokeStyle = linePattern;
-                symCtx.lineWidth = symWidth;
-                symCtx.beginPath();
-                symCtx.moveTo(symWidth/2,0);
-                symCtx.lineTo(symWidth/2,symHeight);
-                symCtx.stroke();
-
-                var lineSymbol = symCanv.toDataURL();
-
                 var color = ['#a6c84c', '#ffa022', '#46bee9'];
                 var series = [];
                 [['北京', BJData], ['上海', SHData], ['广州', GZData]].forEach(function (item, i) {
@@ -253,8 +235,7 @@ under the License.
                             period: 1,
                             trailLength: 0.5,
                             color: '#fff',
-                            symbol: lineSymbol,
-                            symbolSize: [symWidth, symHeight],
+                            symbol: 'line',
                         },
                         lineStyle: {
                             normal: {
